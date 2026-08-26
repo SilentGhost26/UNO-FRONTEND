@@ -1,0 +1,37 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+@font-face {
+    font-family: 'myFont';
+    src: url('../assets/fonts/VT323-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+button {
+    background-color: var(--uno-green);
+    font-family: myFont;
+    color: var(--uno-green-font);
+    min-width: 100px;
+    font-size: 45px;
+    border-color: var(--uno-green);
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: rgb(23, 150, 0);
+}
+
+:root {
+    --uno-red: rgb(205, 22, 5);
+    --uno-blue: rgb(79, 79, 255);
+    --uno-green: rgb(0, 128, 0);
+    --uno-yellow: rgb(236, 209, 0);
+    --uno-red-font: rgb(255, 47, 0);
+    --uno-blue-font: rgb(44, 44, 233);
+    --uno-green-font: rgb(173, 255, 47);
+    --uno-yellow-font: rgb(129, 138, 12);
+}
