@@ -7,7 +7,8 @@ export const renderLogin = () => {
             <form id="form-container">
                 <input class="login-inp" id="email-inp" type="email" name="email" placeholder="Email" required />
                 <input class="login-inp" id="password-inp" type="password" name="password" placeholder="Password" required minlength="8" />
-                <button type="login">Login</button>
+                <button type="submit">Login</button>
+                <p id="error-text"></p>
             </form>
         </section>
     `;

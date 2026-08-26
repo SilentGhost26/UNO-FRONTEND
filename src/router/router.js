@@ -1,9 +1,11 @@
 import { startController } from '../controllers/start.controller';
 import { loginController } from '../controllers/login.controller';
+import { registerController } from '../controllers/register.controller';
 
 const routes = {
-    '/l': startController,
-    '/': loginController,
+    '/': startController,
+    '/login': loginController,
+    '/register': registerController,
 }
 
 function router() {
