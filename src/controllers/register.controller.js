@@ -1,5 +1,5 @@
 import { renderRegister } from "../views/register.view";
-import { registerPlayer } from "../services/ath.service";
+import { registerPlayer } from "../services/auth.service";
 import navigate from '../router/router';
 
 export const registerController = {
@@ -24,7 +24,6 @@ export const registerController = {
             }
             
             const result = await registerPlayer(data);
-            console.log(result)
             if (!result.ok) {
                 messageText.textContent = result.error.message;
             } else {
