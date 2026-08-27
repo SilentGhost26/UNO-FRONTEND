@@ -47,3 +47,10 @@
     gap: 0px;
     margin: 5px;
 }
+
+#register-log-btn {
+    font-size: 20px;
+    margin: 0px;
+    padding: 0px;
+    gap: 5px;
+}

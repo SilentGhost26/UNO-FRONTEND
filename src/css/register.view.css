@@ -36,6 +36,13 @@
     margin: 5px;
 }
 
+#login-reg-btn {
+    font-size: 20px;
+    margin: 0px;
+    padding: 0px;
+    gap: 5px;
+}
+
 #error-text {
     font-family: myFont;
     color: var(--uno-red);

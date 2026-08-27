@@ -8,7 +8,8 @@ export const renderLogin = () => {
                 <input class="login-inp" id="email-inp" type="email" name="email" placeholder="Email" required />
                 <input class="login-inp" id="password-inp" type="password" name="password" placeholder="Password" required minlength="8" />
                 <button type="submit">Login</button>
-                <p id="error-text"></p>
+                <button type="button" id="register-log-btn">Go to register</button>
+                <p id="message-text"></p>
             </form>
         </section>
     `;
