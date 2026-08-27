@@ -1,0 +1,18 @@
+.game-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr;
+    align-items: center;
+    gap: 8px;
+    border: 2px solid var(--uno-yellow);
+    border-radius: 8px;
+    padding: 10px 16px;
+    color: var(--uno-yellow-font);
+    font-family: myFont;
+    font-size: 20px;
+    justify-content: center;
+    background-color: var(--uno-yellow);
+}
+
+.join-btn {
+    font-size: 25px;
+}
