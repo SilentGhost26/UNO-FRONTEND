@@ -1,0 +1,76 @@
+#create-game-screen {
+    background-color: rgb(79, 79, 255);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#create-game-screen .title {
+    margin-top: 40px;
+    margin-bottom: 24px;
+}
+
+#create-game-card {
+    background-color: rgb(0, 174, 255);
+    border-radius: 16px;
+    padding: 32px;
+    width: 500px;
+    max-width: 90%;
+}
+
+#create-game-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+}
+
+.create-inp {
+    font-family: myFont;
+    background-color: var(--uno-yellow);
+    color: var(--uno-yellow-font);
+    font-size: 22px;
+    border: 2px solid black;
+    border-radius: 4px;
+    padding: 10px 14px;
+}
+
+.create-inp::placeholder {
+    color: var(--uno-yellow-font);
+}
+
+.checkbox-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: myFont;
+    color: white;
+    font-size: 18px;
+}
+
+.checkbox-row input[type="checkbox"] {
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+}
+
+#button-row {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 8px;
+}
+
+#cancel-btn,
+#create-btn {
+    font-family: myFont;
+}
+
+.hidden {
+    display: none;
+}

@@ -1,5 +1,6 @@
 import { fetchRequest } from './api';
 import { ok, err } from '../utils/result';
+import { getSocket } from './socket';
 
 export const getGamesByPagination = async (page, limit) => {
     const params = new URLSearchParams({ page, limit });
@@ -17,4 +18,16 @@ export const getGamesByPagination = async (page, limit) => {
     }
 
     return ok(result);
+}
+
+export const createGame = async (gameData, callback) => {
+    const socket = getSocket();
+    socket.emit('create-game', gameData);
+    await socket.on('created-game', (response) => {
+        if (response.error) {
+            callback(err(response));
+        } else {
+            callback(ok(response));
+        }
+    });
 }

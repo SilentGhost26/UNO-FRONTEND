@@ -1,10 +1,16 @@
 import { renderMain } from "../views/main.view";
 import { renderGameRow } from "../components/game-row.component";
 import { getGamesByPagination } from "../services/games.service";
+import navigate from "../router/router";
+import { getToken } from "../utils/storage";
 
 export const mainController = {
     render: renderMain,
     mount: async () => {
+        if (!getToken()) {
+            navigate('/login');
+            return;
+        }
         const profileBtn = document.querySelector('#profile-btn');
         const gameList = document.querySelector('#game-list');
         const logoutBtn = document.querySelector('#logout-btn');
@@ -12,7 +18,7 @@ export const mainController = {
         const prevBtn = document.querySelector('#prev-btn');
         const nextBtn = document.querySelector('#next-btn');
         const messageTxt = document.querySelector('#message-text');
-
+        prevBtn.disabled = true;
         let currentPage = 1;
         const limit = 10;
 
@@ -71,6 +77,10 @@ export const mainController = {
             }
             nextBtn.disabled = false;
             loadGames(newGames.result.games);
+        });
+
+        createGameBtn.addEventListener('click', () => {
+            navigate('/lobby/create')
         });
     }
 
