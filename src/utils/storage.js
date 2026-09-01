@@ -15,3 +15,11 @@ export const saveGameId = (id) => {
 export const getGameId = () => {
     return gameId;
 }
+
+export const savePlayerId = (id) => {
+    localStorage.setItem('playerId', id);
+}
+
+export const getPlayerId = () => {
+    return localStorage.getItem('playerId');
+}

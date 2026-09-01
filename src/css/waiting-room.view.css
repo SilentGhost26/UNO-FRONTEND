@@ -1,0 +1,84 @@
+#waiting-room-screen {
+    background-color: rgb(79, 79, 255);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#waiting-room-card {
+    background-color: var(--uno-yellow);
+    border: 2px solid black;
+    border-radius: 16px;
+    padding: 32px;
+    width: 800px;
+    max-width: 90%;
+}
+
+#waiting-room-content {
+    display: flex;
+    gap: 40px;
+}
+
+#game-info {
+    background-color: var(--uno-blue);
+    border-radius: 16px;
+    padding: 20px;
+    width: 180px;
+    color:aqua;
+    flex-shrink: 0;
+}
+
+#game-info p {
+    margin: 6px 0;
+    font-size: 15px;
+}
+
+.info-label {
+    font-weight: bold;
+}
+
+#players-section {
+    flex: 1;
+    color: rgb(0, 60, 180);
+}
+
+#players-section h3 {
+    margin: 0 0 12px 0;
+}
+
+#players-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.player-row {
+    background-color: rgb(180, 255, 200);
+    padding: 10px 16px;
+    color: rgb(0, 60, 180);
+}
+
+#waiting-room-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 32px;
+}
+
+#leave-btn,
+#edit-btn,
+#start-btn {
+    padding: 14px 24px;
+    flex: 1;
+}
+
+.hidden {
+    display: none;
+}

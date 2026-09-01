@@ -1,5 +1,5 @@
 import { ok, err } from '../utils/result';
-import { saveToken } from '../utils/storage';
+import { saveToken, savePlayerId } from '../utils/storage';
 
 import { fetchRequest } from "./api"
 
@@ -27,6 +27,21 @@ export const loginPlayer = async (email, password) => {
     }
     const result = await response.result.json();
     saveToken(result.access_token);
+    savePlayerId(result.playerId);
 
     return ok();
+}
+
+export const logoutPlayer = async () => {
+    const response = await fetchRequest('POST', '/auth/logout');
+
+    if (!response.ok) {
+        return err(await response.error.json());
+    }
+
+    if (response.result.status === 200) {
+        saveToken(null);
+        return ok();
+    }
+    return err(await response.error.json());
 }

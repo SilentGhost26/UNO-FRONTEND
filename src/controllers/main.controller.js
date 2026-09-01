@@ -1,8 +1,9 @@
 import { renderMain } from "../views/main.view";
 import { renderGameRow } from "../components/game-row.component";
-import { getGamesByPagination } from "../services/games.service";
+import { getGamesByPagination, joinGame, getGame } from "../services/games.service";
 import navigate from "../router/router";
 import { getToken } from "../utils/storage";
+import { logoutPlayer } from "../services/auth.service";
 
 export const mainController = {
     render: renderMain,
@@ -46,7 +47,15 @@ export const mainController = {
             messageTxt.classList.add('hidden');
             games.forEach(g => {
                 const row = renderGameRow(g, (gameId) => {
-
+                    joinGame(gameId, async (result) => {
+                        if (!result.ok) {
+                            messageTxt.textContent = 'Was not possible join to game';
+                            messageTxt.classList.remove('hidden');
+                        } else {
+                            const game = await getGame(gameId);
+                            navigate('/waiting-room', game.result);
+                        }
+                    });
                 });
                 gameList.appendChild(row);
             });
@@ -73,7 +82,7 @@ export const mainController = {
                 messageTxt.textContent = 'There are not games';
                 messageTxt.classList.remove('hidden');
                 gameList.innerHTML = '';
-                prev.disabled = true;
+                prevBtn.disabled = true;
             }
             nextBtn.disabled = false;
             loadGames(newGames.result.games);
@@ -82,6 +91,19 @@ export const mainController = {
         createGameBtn.addEventListener('click', () => {
             navigate('/lobby/create')
         });
-    }
 
+        logoutBtn.addEventListener('click', async (e) => {
+            const response = await logoutPlayer();
+            if (!response.ok) {
+                messageTxt.textContent = response.error.message;
+            } else {
+                gameList.innerHTML = '';
+                messageTxt.textContent = 'Logout succesfully';
+                messageTxt.classList.remove('hidden');
+               setTimeout(() => {
+                    navigate('/');
+                }, 500);
+            }
+        });
+    }
 };

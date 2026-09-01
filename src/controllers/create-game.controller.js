@@ -30,10 +30,9 @@ export const gameController = {
                         messageText.textContent = result.error.message;
                     } else {
                         messageText.textContent = 'game created succesfully';
-                        await setTimeout(() => { 
-                            navigate('/lobby');
+                        setTimeout(() => { 
+                            navigate('/waiting-room', result.result);
                         }, 500);
-                    
                     }
                 });
             } catch (error) {

@@ -24,7 +24,7 @@ export const loginController = {
                 messageText.textContent = result.error.message;
             } else {
                 messageText.textContent = 'Login succesfully'
-                await setTimeout(() => { 
+                setTimeout(() => { 
                     navigate('/lobby');
                 }, 500);
                
