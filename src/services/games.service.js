@@ -141,7 +141,6 @@ export const distributeCards = (gameId, cardsPerPlayer) => {
 }
 
 export const playCard = (gameId, cardId, newColor) => {
-    console.log(cardId)
     getSocket().emit('play-card', { gameId, cardId, newColor });
 }
 

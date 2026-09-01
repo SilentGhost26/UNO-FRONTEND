@@ -60,6 +60,14 @@ export const gameController = {
             resultsPopup.classList.remove('hidden');
         };
 
+        const showWinnerByDeparture = ({ winner, reason }) => {
+            ranking.innerHTML = `
+                <div class="ranking-row first"><span>Winner · ${winner?.name || 'Remaining player'}</span></div>
+                <p>${reason}</p>
+            `;
+            resultsPopup.classList.remove('hidden');
+        };
+
         const requestPlayCard = (card) => {
             if (card.color !== 'MULTICOLOR') {
                 playCard(gameId, card.id + '');
@@ -184,6 +192,7 @@ export const gameController = {
             stopPlayerLeft();
             stopDistributedCards();
             stopSaidUno();
+            stopGameFinished();
         };
         const refreshAfterEvent = () => refreshGame();
         const stopCardPlayed = hearEvent('card-played', (result) => {
@@ -199,6 +208,7 @@ export const gameController = {
             playersWhoSaidUno.add(response.player.playerId);
             renderBoard();
         });
+        const stopGameFinished = hearEvent('game-finished', showWinnerByDeparture);
         const stopError = hearEvent('error', (error) => showPopup(error.message));
         const stopPlayerLeft = hearEvent('player-left', (player) => {
             if (player.playerId === currentPlayerId) {
@@ -206,6 +216,9 @@ export const gameController = {
                 return;
             }
             playersWhoSaidUno.delete(player.playerId);
+            if (player.gameFinished) {
+                return;
+            }
             refreshPlayers();
         });
 

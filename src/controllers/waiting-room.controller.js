@@ -83,12 +83,10 @@ export const waitingRoomController = {
             }   
 
             updateGame(getGameId(), data, (result) => {
-                console.log('234234')
                 if (!result.ok) {
                     editMsg.textContent = result.error?.message ?? 'Update failed';
                     return;
                 }
-                console.log(222)
                 editOverlay.classList.add('hidden');
                 waitingRoomCard.classList.remove('hidden');
             });
