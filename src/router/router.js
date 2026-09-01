@@ -5,6 +5,7 @@ import { mainController } from '../controllers/main.controller';
 import { gameController as createGameController } from '../controllers/create-game.controller';
 import { waitingRoomController} from '../controllers/waiting-room.controller';
 import { gameController } from '../controllers/game.controller';
+import { profileController } from '../controllers/profile.controller';
 
 const routes = {
     '/': startController,
@@ -14,6 +15,7 @@ const routes = {
     '/lobby/create': createGameController,
     '/waiting-room': waitingRoomController,
     '/game': gameController,
+    '/profile': profileController,
 }
 
 function router(data) {

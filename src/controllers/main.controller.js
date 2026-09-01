@@ -92,6 +92,10 @@ export const mainController = {
             navigate('/lobby/create')
         });
 
+        profileBtn.addEventListener('click', () => {
+            navigate('/profile');
+        });
+
         logoutBtn.addEventListener('click', async (e) => {
             const response = await logoutPlayer();
             if (!response.ok) {
