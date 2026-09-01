@@ -1,0 +1,161 @@
+#game-screen {
+    min-height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    color: white;
+    background: radial-gradient(circle at center, rgb(0, 174, 255), var(--uno-blue) 65%);
+}
+
+#game-header {
+    height: 68px;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    box-sizing: border-box;
+    background-color: rgba(0, 0, 0, .22);
+    font-size: 26px;
+}
+
+#game-title { color: var(--uno-yellow); font-size: 34px; }
+#turn-label { text-align: center; }
+#game-leave-btn { min-width: 130px; font-size: 24px; }
+
+#game-board {
+    position: relative;
+    height: calc(100vh - 68px);
+    min-height: 580px;
+}
+
+#opponents-area, #own-player-area, #game-center {
+    position: absolute;
+}
+
+#opponents-area { inset: 0; pointer-events: none; }
+
+.opponent-player {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    pointer-events: auto;
+}
+
+.opponent-player.top { top: 28px; left: 50%; transform: translateX(-50%); }
+.opponent-player.left { left: 24px; top: 50%; transform: translateY(-50%); }
+.opponent-player.right { right: 24px; top: 50%; transform: translateY(-50%); }
+
+.opponent-info {
+    min-width: 110px;
+    padding: 9px 13px;
+    border: 2px solid var(--uno-yellow);
+    border-radius: 8px;
+    text-align: center;
+    background-color: rgba(0, 85, 110, .9);
+    font-size: 21px;
+}
+
+.opponent-cards { color: var(--uno-yellow); }
+.challenge-btn { min-width: 82px; font-size: 22px; }
+
+#game-center {
+    top: 47%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    gap: clamp(16px, 4vw, 64px);
+}
+
+.game-pile { display: flex; flex-direction: column; align-items: center; gap: 7px; }
+.pile-label { font-size: 22px; color: var(--uno-yellow); }
+
+.card-back, .uno-card, .discard-pile {
+    width: 92px;
+    height: 132px;
+    padding: 0;
+    border: 3px solid white;
+    border-radius: 9px;
+    box-sizing: border-box;
+}
+
+.card-back {
+    min-width: 0;
+    color: white;
+    font-size: 31px;
+    font-weight: bold;
+    background: repeating-linear-gradient(45deg, var(--uno-red), var(--uno-red) 9px, var(--uno-yellow) 9px, var(--uno-yellow) 18px);
+}
+
+#current-color {
+    width: 31px;
+    height: 31px;
+    transform: rotate(45deg);
+    border: 3px solid white;
+    background-color: var(--uno-yellow);
+}
+
+#current-color.color-red { background-color: var(--uno-red); }
+#current-color.color-green { background-color: var(--uno-green); }
+#current-color.color-blue { background-color: var(--uno-blue); }
+#current-color.color-yellow { background-color: var(--uno-yellow); }
+
+.discard-pile { display: grid; place-items: center; background: rgba(0, 0, 0, .2); }
+.discard-pile .uno-card { width: 100%; height: 100%; }
+
+#own-player-area { bottom: 18px; left: 50%; transform: translateX(-50%); width: min(92%, 1000px); text-align: center; }
+.own-player-info { display: flex; align-items: center; justify-content: center; gap: 12px; }
+.player-name { display: block; margin-bottom: 8px; font-size: 26px; color: var(--uno-yellow); }
+#say-uno-btn { min-width: 75px; margin-bottom: 8px; font-size: 23px; }
+#say-uno-btn.hidden { display: none; }
+
+#own-hand { display: flex; justify-content: center; align-items: flex-end; min-height: 136px; overflow-x: auto; padding: 0 18px 8px; }
+.uno-card { flex: 0 0 auto; min-width: 0; margin-left: -26px; background: transparent; cursor: default; }
+.uno-card:first-child { margin-left: 0; }
+.uno-card img { width: 100%; height: 100%; object-fit: fill; display: block; }
+.uno-card:disabled { opacity: 1; }
+.uno-card-playable { cursor: pointer; transition: transform .15s, margin-bottom .15s; }
+.uno-card-playable:hover { transform: translateY(-18px); }
+.uno-card-fallback { color: white; font-size: 32px; background-color: var(--uno-red); }
+
+#game-popup { position: fixed; inset: 0; z-index: 5; display: grid; place-items: center; background-color: rgba(0, 0, 0, .45); }
+#game-popup.hidden { display: none; }
+#game-popup-content { width: min(420px, 80vw); padding: 28px; border: 3px solid var(--uno-yellow); border-radius: 14px; text-align: center; background-color: var(--uno-blue); font-size: 26px; }
+#game-popup-close { min-width: 90px; font-size: 28px; }
+#color-picker.hidden { display: none; }
+#color-options { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px; }
+.color-option { min-width: 0; font-size: 21px; color: white; }
+.color-option.red { background-color: var(--uno-red); border-color: var(--uno-red); }
+.color-option.green { background-color: var(--uno-green); border-color: var(--uno-green); }
+.color-option.blue { background-color: var(--uno-blue); border-color: var(--uno-blue); }
+.color-option.yellow { background-color: var(--uno-yellow); border-color: var(--uno-yellow); color: var(--uno-yellow-font); }
+
+#game-results-popup { position: fixed; inset: 0; z-index: 6; display: grid; place-items: center; background-color: rgba(0, 0, 0, .62); }
+#game-results-popup.hidden { display: none; }
+#game-results-content { width: min(460px, 84vw); padding: 30px; border: 4px solid var(--uno-yellow); border-radius: 16px; text-align: center; background-color: var(--uno-blue); }
+#game-results-content h2 { margin: 0 0 20px; color: var(--uno-yellow); font-size: 42px; }
+#game-ranking { display: flex; flex-direction: column; gap: 10px; margin-bottom: 25px; }
+.ranking-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; border-radius: 8px; background-color: rgba(0, 0, 0, .25); font-size: 25px; }
+.ranking-row.first { color: var(--uno-yellow); border: 2px solid var(--uno-yellow); }
+.ranking-score { color: white; }
+#results-leave-btn { font-size: 27px; }
+
+#game-board.players-2 .opponent-player { top: 28px; left: 50%; transform: translateX(-50%); }
+#game-board.players-3 .opponent-player:nth-child(1) { top: 28px; left: 25%; transform: translateX(-50%); }
+#game-board.players-3 .opponent-player:nth-child(2) { top: 28px; left: 75%; transform: translateX(-50%); }
+#game-board.players-4 .opponent-player:nth-child(1) { top: 28px; left: 50%; transform: translateX(-50%); }
+#game-board.players-4 .opponent-player:nth-child(2) { left: 24px; top: 50%; transform: translateY(-50%); }
+#game-board.players-4 .opponent-player:nth-child(3) { right: 24px; top: 50%; transform: translateY(-50%); }
+
+@media (max-width: 700px) {
+    #game-header { padding: 0 10px; font-size: 18px; }
+    #game-title { font-size: 24px; }
+    #game-leave-btn { min-width: 80px; font-size: 18px; }
+    .card-back, .uno-card, .discard-pile { width: 68px; height: 98px; }
+    .uno-card { margin-left: -38px; }
+    #game-center { gap: 14px; }
+    .opponent-info { min-width: 75px; padding: 5px; font-size: 16px; }
+    .challenge-btn { min-width: 54px; font-size: 16px; }
+    .opponent-player.left { left: 5px; } .opponent-player.right { right: 5px; }
+}

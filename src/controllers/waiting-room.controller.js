@@ -1,5 +1,5 @@
 import { renderWaitingRoom } from '../views/waiting-room.view';
-import { getPlayersInGame, updateGame, hearEvent, leaveGame } from '../services/games.service';
+import { getPlayersInGame, updateGame, hearEvent, leaveGame, startGame } from '../services/games.service';
 import { renderPlayerRow } from '../components/player-row.component';
 import { getPlayerId } from '../utils/storage';
 import { getGameId } from '../utils/storage';
@@ -104,6 +104,15 @@ export const waitingRoomController = {
             }, 500);
         });
 
+        startBtn.addEventListener('click', () => {
+            startGame(getGameId(), (result) => {
+                if (!result.ok) {
+                    messageText.textContent = result.error?.message || 'Could not start the game';
+                    messageText.classList.remove('hidden');
+                }
+            });
+        });
+
         const stopListeningGameUpdated = hearEvent('game-updated', (result) => {
             infoTitle.textContent = result.title;
             infoMax.textContent = result.maxPlayers;
@@ -146,6 +155,13 @@ export const waitingRoomController = {
                 });
             }
             }
+        });
+        const stopListeningGameStarted = hearEvent('game-started', () => {
+            stopListeningGameUpdated();
+            stopListeningPlayerJoined();
+            stopListeningPlayerLeft();
+            stopListeningGameStarted();
+            navigate('/game');
         });
     }
 }

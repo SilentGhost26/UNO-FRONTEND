@@ -2,16 +2,18 @@ import { startController } from '../controllers/start.controller';
 import { loginController } from '../controllers/login.controller';
 import { registerController } from '../controllers/register.controller';
 import { mainController } from '../controllers/main.controller';
-import { gameController } from '../controllers/create-game.controller';
+import { gameController as createGameController } from '../controllers/create-game.controller';
 import { waitingRoomController} from '../controllers/waiting-room.controller';
+import { gameController } from '../controllers/game.controller';
 
 const routes = {
     '/': startController,
     '/login': loginController,
     '/register': registerController,
     '/lobby': mainController,
-    '/lobby/create': gameController,
+    '/lobby/create': createGameController,
     '/waiting-room': waitingRoomController,
+    '/game': gameController,
 }
 
 function router(data) {

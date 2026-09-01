@@ -47,7 +47,6 @@ export const getGameStatus = async (gameId) => {
     if (response.result.status !== 200) {
         return err(result);
     }
-
     return ok(result);
 }
 
@@ -113,19 +112,47 @@ export const joinGame = async (gameId, callback) => {
 export const leaveGame = async (callback) => {
     const socket = getSocket();
     socket.emit('leave-game', ({ gameId: getGameId() }));
-    socket.on('player-left', (response) => {
+    socket.once('player-left', (response) => {
         if (response.error) {
-            callback(err(response));
+            callback?.(err(response));
         } else {
-            callback(ok(response));
+            callback?.(ok(response));
         }
     });
 }
 
 export const hearEvent = (event, callback) => {
     const socket = getSocket();
-    socket.on(event, (response) => {
+    const handler = (response) => {
         callback(response);
-    });
-    return () => socket.off(event, callback);
+    };
+    socket.on(event, handler);
+    return () => socket.off(event, handler);
+}
+
+export const startGame = (gameId, callback) => {
+    const socket = getSocket();
+    socket.emit('start-game', { gameId });
+    socket.once('game-started', () => callback?.(ok()));
+}
+
+export const distributeCards = (gameId, cardsPerPlayer) => {
+    getSocket().emit('distribute-cards', { gameId, cardsPerPlayer });
+}
+
+export const playCard = (gameId, cardId, newColor) => {
+    console.log(cardId)
+    getSocket().emit('play-card', { gameId, cardId, newColor });
+}
+
+export const drawCard = (gameId) => {
+    getSocket().emit('draw', { gameId });
+}
+
+export const challengePlayer = (gameId, challengedPlayerId) => {
+    getSocket().emit('challenge', { gameId, challengedPlayerId });
+}
+
+export const sayUno = (gameId) => {
+    getSocket().emit('say-uno', { gameId });
 }
