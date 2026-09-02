@@ -70,7 +70,7 @@ export const gameController = {
 
         const requestPlayCard = (card) => {
             if (card.color !== 'MULTICOLOR') {
-                playCard(gameId, card.id + '');
+                playCard(gameId, card.id);
                 return;
             }
             popupMessage.textContent = '';
@@ -80,7 +80,7 @@ export const gameController = {
             document.querySelectorAll('.color-option').forEach(button => {
                 button.onclick = () => {
                     closePopup();
-                    playCard(gameId, card.id + '', button.dataset.color);
+                    playCard(gameId, card.id, button.dataset.color);
                 };
             });
         };
