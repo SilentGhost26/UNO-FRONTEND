@@ -8,9 +8,10 @@ export const getSocket = () => {
             auth: {
                 token: getToken(),
             },
-            query: {
+            extraHeaders: {
                 'ngrok-skip-browser-warning': 'true'
-            }
+            },
+            transports: ['websocket']
         });
     }
     return socket;
