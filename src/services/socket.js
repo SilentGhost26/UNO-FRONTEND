@@ -7,6 +7,9 @@ export const getSocket = () => {
         socket = io(import.meta.env.VITE_API_SOCKET, {
             auth: {
                 token: getToken(),
+            },
+            query: {
+                'ngrok-skip-browser-warning': 'true'
             }
         });
     }
